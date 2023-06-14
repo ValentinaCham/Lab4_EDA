@@ -34,6 +34,13 @@ public class ListLinked<E> implements TDAList<E>{
 		}
 	}
 	
+	public Node<T> get(int indice) {
+	    Node<T> aux=this.head;
+	    for(int i=0;i<indice;i++)
+		aux=aux.getNext();
+	    return aux;
+	}
+	
 	public boolean search(E x) { 
 		Node<E> aux = this.head;
 		for(; aux != null && !aux.getData().equals(x); aux = aux.getNext());
@@ -56,6 +63,18 @@ public class ListLinked<E> implements TDAList<E>{
 				}
 			}
 		}
+	}
+	
+	public Node<T> remove(int indice) {
+	    if(indice<count) {
+		if(indice==0)
+		    raiz=raiz.getNextNode();
+		else {
+		    Node<T> anterior=this.get(indice-1);
+		    anterior.setNextNode(this.get(indice+1));
+		}
+		count--;
+	    }
 	}
 	
 	public String toString() {
